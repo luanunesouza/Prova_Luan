@@ -11,7 +11,7 @@ class PaginaDadosComprador < SitePrism::Page
     element :email_field, "#wpsc_checkout_form_9"
     element :purchase_button, :css, "#wpsc_shopping_cart_container > form > div.wpsc_make_purchase > div > div > span > input"
 
-    def dados (nome, sobrenome, endereco, cidade, estado, pais, telefone, email)
+    def dados_do_comprador (nome, sobrenome, endereco, cidade, estado, pais, telefone, email)
         shipping_same_checkbox.set(true)
         fist_name_field.set(nome)
         last_name_field.set(sobrenome)

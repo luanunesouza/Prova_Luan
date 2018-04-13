@@ -1,26 +1,29 @@
 class PaginaCompra < SitePrism::Page
 
-    element :product_category_menu, "#menu-item-33"
-    element :product1_button, :css, "#default_products_page_container > div.default_product_display.product_view_32.product-category.group > div.productcol > form > div.wpsc_buy_button_container.group > div.input-button-buy > span > input"
-    element :product2_button, :css, "#default_products_page_container > div.default_product_display.product_view_40.product-category.group > div.productcol > form > div.wpsc_buy_button_container.group > div.input-button-buy > span > input"
-    element :product3_button, :css, "#default_products_page_container > div.default_product_display.product_view_64.product-category.group > div.productcol > form > div.wpsc_buy_button_container.group > div.input-button-buy > span > input"  
-    element :quantidade_itens, :xpath, '//*[@id="header_cart"]/a/em[1]'
-    element :waitformsg, :css, '#default_products_page_container > div.default_product_display.product_view_32.product-category.group > div.productcol > form > div.wpsc_buy_button_container.group > div.input-button-buy > div.alert.addtocart > p'
-    element :waitformsg3, :css, '#default_products_page_container > div.default_product_display.product_view_64.product-category.group > div.productcol > form > div.wpsc_buy_button_container.group > div.input-button-buy > div.alert.addtocart > p'
+    element :iphone5_add_cart_button, :css, "#default_products_page_container > div.default_product_display.product_view_32.product-category.group > div.productcol > form > div.wpsc_buy_button_container.group > div.input-button-buy > span > input"
+    element :magic_mouse_add_cart_button, :css, "#default_products_page_container > div.default_product_display.product_view_40.product-category.group > div.productcol > form > div.wpsc_buy_button_container.group > div.input-button-buy > span > input"
+    element :ipod_nano_add_cart_button, :css, "#default_products_page_container > div.default_product_display.product_view_64.product-category.group > div.productcol > form > div.wpsc_buy_button_container.group > div.input-button-buy > span > input"  
+    element :quantidade_itens_carrinho, '#header_cart'    
 
-    def addcarrinho ()
-        product_category_menu.click
-        product1_button.click
-        wait_for_waitformsg
+    def adicionar_3_produtos_carrinho
+        iphone5_add_cart_button.click
 
-        product2_button.click
-        wait_for_waitformsg
+        magic_mouse_add_cart_button.click
 
-        product3_button.click
-        wait_for_waitformsg3
+        ipod_nano_add_cart_button.click
+
+        #Aguardar 15 segundos para o proximo step
+        sleep(15)
     end
 
-    def qtdditens
-        quantidade_itens.text
+    def validar_3_produtos_carrinho
+        quantidade_itens = quantidade_itens_carrinho.text.sub ' item | Cart Checkout"',''
+        quantidade_itens = quantidade_itens.to_i
+
+        if quantidade_itens == 3
+            puts "Existem 3 produtos no carrinho"
+        else
+            puts "Ops! Não há 3 produtos no carrinho"
+        end
     end
 end

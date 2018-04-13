@@ -1,1 +1,14 @@
+#profile que irá formatar a saída pretty
 default: --no-source --color --format pretty
+
+#Profile para executar a tag @Comprar3produtos e gerar o relatório da execução no formato html
+#Para executar este profile digite no cmd dentro da pasta do seu projeto:  cucumber -p @comprar3produtos
+comprar_3_produtos: -t @comprar3produtos -f html -o comprar_3_produtos_report.html
+
+#Profile para executar a tag @excluirprodmaiscaro e gerar o relatório da execução no formato html
+#Para executar este profile digite no cmd dentro da pasta do seu projeto:  cucumber -p excluir_produto_mais_caro
+excluir_produto_mais_caro: -t @excluirprodmaiscaro -f html -o excluir_produtos_mais_caro_report.html
+
+#Profile para executar a tag @validarexibir3prod e gerar o relatório da execução no formato html
+#Para executar este profile digite no cmd dentro da pasta do seu projeto:  cucumber -p validar_3_produtos_carrinho
+validar_3_produtos_carrinho: -t @validarexibir3prod -f html -o validar_3_produtos_carrinho_report.html

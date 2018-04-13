@@ -11,10 +11,4 @@ After do |scenario|
  
     page.save_screenshot("report/#{sufix}-#{name}.png")
     embed("report/#{sufix}-#{name}.png", 'image/png', 'Screenshot')
- 
-    if page.driver.browser.window_handles.count > 1
-        page.driver.browser.close
-        last_handle = page.driver.browser.window_handles.last
-        page.driver.browser.switch_to.window(last_handle)
-    end
 end
